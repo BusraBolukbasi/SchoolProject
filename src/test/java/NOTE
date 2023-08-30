@@ -1,0 +1,15 @@
+//*[@role='alert'] --> Dean olarak login olamazsam cikan alert
+
+invalid phone number ise (//*[@role='alert'])[1] --> cikan alert locate'i
+
+invalid ssn number ise (//*[@role='alert'])[2] --> cikan alert locate'i
+
+name ve surname'de bosluk birakilsa bile ismi kabul ediyor ve kayıt yapabiliyor
+
+username bosluk rakam her seyi icerebiliyor
+
+ssn de aralara - koymak zorunlu yoksa invalid diyerek alert gonderiyor
+
+name username veya digerleri bos birakildigi zaman isleme devam edilemiyor
+
+password 8'den az girilirse kutunun altinda mesaj cikiyor o mesajin locet'i --> class="invalid-feedback"
