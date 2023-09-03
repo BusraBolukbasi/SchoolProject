@@ -1,13 +1,14 @@
 Feature: US06 Dean Vicedean Ekleyebilmeli
 
-  Background: Kullanici anasayafa gider
+  Background:
+  @g
   Scenario: TC01 Dean vicedean olusturabilmeli
-    Given Kullanici "DeanGiris" olarak giris yapar
-    When Giris yaptiktan sonra sag ustte bulunan menu butonuna tiklar
-    Then Kullanici menudeki Vicedean butonuna tiklar
+    Given Kullanici anasayafa gider
+    And Kullanici "DeanName" olarak giris yapar
+    When Giris yaptiktan sonra sag ustte bulunan menu butonuna tiklar ve vicdean butonunu secer
     And Kullanici Add Vicedean bolumundeki zorunlu alanlari doldurur
     And Submit butonuna tiklar
-    And Hesabin olustugunu dogrula
+    Then Hesabin olustugunu dogrula
 
 
 

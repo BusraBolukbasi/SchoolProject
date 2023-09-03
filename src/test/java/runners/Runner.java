@@ -10,9 +10,9 @@ import org.junit.runner.RunWith;
                            "json:target/json-reports/cucumber1.json",
                            "junit:target/xml-report/cucumber.xml",
                            "rerun:TestOutput/failed_scenario.txt"},
-        features = "src/test/resources/features",
-        glue = {"techproed/stepDefinition"},
-        tags = "@aa",
+        features = "src/test/resources/US06_DeanVicedeanEkleyebilmeli.feature",
+        glue = {"stepDefinition"},
+        tags = "@g",
         dryRun = false,
         monochrome = true
 

@@ -104,6 +104,7 @@ public class ReusableMethods {
         wait.until(ExpectedConditions.alertIsPresent());
 
     }
+
     //Tüm Sayfa ScreenShot
     public static String tumSayfaResmi(String name) {
         String tarih = new SimpleDateFormat("_hh_mm_ss_ddMMyyyy").format(new Date());
@@ -182,11 +183,12 @@ public class ReusableMethods {
         String attribute_Value = (String) js.executeScript("return document.getElementById('" + id + "')." + attributeName);
         System.out.println("Attribute Value: = " + attribute_Value);
     }
+
     //File Upload Robot Class
-    public static void uploadFile(String dosyaYolu){
-        try{
+    public static void uploadFile(String dosyaYolu) {
+        try {
             StringSelection stringSelection = new StringSelection(dosyaYolu);
-            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection,null);
+            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
             Robot robot = new Robot();
             robot.keyPress(KeyEvent.VK_CONTROL);
             robot.keyPress(KeyEvent.VK_V);
@@ -196,8 +198,15 @@ public class ReusableMethods {
             robot.keyPress(KeyEvent.VK_ENTER);
             robot.keyRelease(KeyEvent.VK_ENTER);
             robot.delay(3000);
-        }catch (Exception ignored){
+        } catch (Exception ignored) {
 
         }
     }
-}
+
+    public static void scrollElementDown(WebElement element, int pixels) {
+            int elementPosition = element.getLocation().getY();
+            JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+            js.executeScript("window.scroll(0, arguments[0]);", elementPosition + pixels);
+            ReusableMethods.bekle(1);
+        }
+    }

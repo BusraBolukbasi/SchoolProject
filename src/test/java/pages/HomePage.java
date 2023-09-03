@@ -6,7 +6,6 @@ import org.openqa.selenium.support.PageFactory;
 import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.ReusableMethods;
-import utilities.Driver;
 
 public class HomePage {
     public HomePage() {
