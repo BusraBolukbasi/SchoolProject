@@ -1,20 +1,30 @@
 Feature: US06 Dean Vicedean Ekleyebilmeli
 
-  Background:
+  Background: Kullanici "homePageUrl" sayfasina gider
+    Given Kullanici "homePageUrl" sayfasina gider
   @g
   Scenario: TC01 Dean vicedean olusturabilmeli
-    Given Kullanici anasayafa gider
-    And Kullanici "DeanName" olarak giris yapar
-    When Giris yaptiktan sonra sag ustte bulunan menu butonuna tiklar ve vicdean butonunu secer
+    When Kullanici "DeanName" olarak giris yapar
+    And Giris yaptiktan sonra sag ustte bulunan menu butonuna tiklar ve vicdean butonunu secer
     And Kullanici Add Vicedean bolumundeki zorunlu alanlari doldurur
     And Submit butonuna tiklar
     Then Hesabin olustugunu dogrula
 
 
 
-    #Kullanici Dean olarak giris yapar
-    #Giris yaptiktan sonra sag ustte bulunan 'menu' butonuna tiklanir
-    #Acilan menuden Vice Dean butonuna tiklanir
-    #Acilan sayfadaki add viceDean bolumundeki doldurmasi gerekli alanlari doldurur
-    #Submit butonuna tiklanir
-    #Hesabın olustugu yukarida cikan alert ile dogrulanir
+  @b
+  Scenario: TC02 Dean Zorunlu Alanlari Bos Birakir
+  When Kullanici "DeanName" olarak giris yapar
+  And Giris yaptiktan sonra sag ustte bulunan menu butonuna tiklar ve vicdean butonunu secer
+  And Kullanici Add Vicedean bolumundeki zorunlu alanlari bos birakir
+  And Submit butonuna tiklar
+  Then Requied yazisini dogrula
+
+
+  @v
+  Scenario: TC03 Dean PhoneNumber Alanina Invalid Numara Girer
+    When Kullanici "DeanName" olarak giris yapar
+    And Giris yaptiktan sonra sag ustte bulunan menu butonuna tiklar ve vicdean butonunu secer
+    And Kullanici Add Vicedean bolumundeki zorunlu alanlari doldurur
+    And Kullanici phoneNumber'a invalid bir numara girer
+    Then Submit butonuna tikla ve cikan alert ile phoneNumber'in invalid deger oldugunu dogrula

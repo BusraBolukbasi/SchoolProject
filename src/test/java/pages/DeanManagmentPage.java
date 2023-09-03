@@ -67,6 +67,12 @@ public class DeanManagmentPage {
     @FindBy(xpath = "//*[@role='alert']")
     public WebElement verifyAlert;
 
+    @FindBy(xpath = "(//*[text()='Please enter valid phone number'])[1]")
+    public WebElement verifyPhoneNumber;
+
+    @FindBy(xpath = "//*[@class=\"invalid-feedback\"]")
+    public WebElement requiedYazisi;
+
 
     public DeanManagmentPage menuVeViceDeanTiklama() {
         DeanManagmentPage deanManagmentPage = new DeanManagmentPage();
@@ -127,6 +133,12 @@ public class DeanManagmentPage {
         loginUsername.sendKeys(username);
         loginPassword.sendKeys(password);
         ReusableMethods.click(loginSubmitButton);
+        return this;
+    }
+
+    public DeanManagmentPage zorunluAlanlariBosBirak(){
+        viceDeanPassword.click();
+        viceDeanSubmitButton.click();
         return this;
     }
 }

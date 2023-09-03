@@ -2,6 +2,7 @@ package stepDefinition;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import pages.DeanManagmentPage;
@@ -26,8 +27,8 @@ public class DeanStepDefinition {
 
     @And("Kullanici Add Vicedean bolumundeki zorunlu alanlari doldurur")
     public void kullaniciAddVicedeanBolumundekiZorunluAlanlariDoldurur() {
-        deanManagmentPage.zorunluAlanlar("Jem", "All", "New York",
-                "female", "12/8/1998", "455-632-5469", "487-89-8657",
+        deanManagmentPage.zorunluAlanlar("Kelli", "All", "New York",
+                "female", "12/8/1998", null, "487-89-8657",
                 "JemAll", "JemAll12");
         ReusableMethods.bekle(2);
     }
@@ -44,8 +45,31 @@ public class DeanStepDefinition {
         Assert.assertTrue(deanManagmentPage.verifyAlert.isDisplayed());
     }
 
-    @Given("Kullanici anasayafa gider")
-    public void kullaniciAnasayafaGider() {
+    @And("Kullanici Add Vicedean bolumundeki zorunlu alanlari bos birakir")
+    public void kullaniciAddVicedeanBolumundekiZorunluAlanlariBosBirakir() {
+       deanManagmentPage.zorunluAlanlar(null, null, null, null, null, null, null, null, null);
+    }
+
+    @Then("Requied yazisini dogrula")
+    public void requiedYazisiniDogrula() {
+        Assert.assertTrue(deanManagmentPage.requiedYazisi.isDisplayed());
+    }
+
+    @Given("Kullanici {string} sayfasina gider")
+    public void kullaniciSayfasinaGider(String str) {
         Driver.getDriver().get(ConfigReader.getProperty("homePageUrl"));
+    }
+
+
+    @Then("Alert ile invalid deger oldugunu dogrula")
+    public void alertIleInvalidDegerOldugunuDogrula() {
+        Assert.assertTrue(deanManagmentPage.verifyPhoneNumber.isDisplayed());
+    }
+
+    @Then("Submit butonuna tikla ve cikan alert ile phoneNumber'in invalid deger oldugunu dogrula")
+    public void submitButonunaTiklaVeCikanAlertIlePhoneNumberInInvalidDegerOldugunuDogrula() {
+        deanManagmentPage.viceDeanSubmitButton.click();
+        deanManagmentPage.viceDeanPhoneNumber.clear();
+        deanManagmentPage.viceDeanPhoneNumber.sendKeys("123-4567-147");
     }
 }
