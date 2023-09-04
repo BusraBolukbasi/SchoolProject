@@ -1,5 +1,6 @@
 package pages;
 
+import com.github.javafaker.Faker;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -8,6 +9,7 @@ import utilities.ReusableMethods;
 
 
 public class DeanManagmentPage {
+    Faker name = new Faker();
 
     public DeanManagmentPage() {
         PageFactory.initElements(Driver.getDriver(), this);
@@ -70,8 +72,11 @@ public class DeanManagmentPage {
     @FindBy(xpath = "(//*[text()='Please enter valid phone number'])[1]")
     public WebElement verifyPhoneNumber;
 
-    @FindBy(xpath = "//*[@class=\"invalid-feedback\"]")
+    @FindBy(xpath = "//*[@class='invalid-feedback']")
     public WebElement requiedYazisi;
+
+    @FindBy(xpath = "(//*[text()='Please enter valid SSN number'])[1]")
+    public WebElement verifySsnNumber;
 
 
     public DeanManagmentPage menuVeViceDeanTiklama() {

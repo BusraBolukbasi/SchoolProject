@@ -27,9 +27,9 @@ public class DeanStepDefinition {
 
     @And("Kullanici Add Vicedean bolumundeki zorunlu alanlari doldurur")
     public void kullaniciAddVicedeanBolumundekiZorunluAlanlariDoldurur() {
-        deanManagmentPage.zorunluAlanlar("Kelli", "All", "New York",
-                "female", "12/8/1998", null, "487-89-8657",
-                "JemAll", "JemAll12");
+        deanManagmentPage.zorunluAlanlar("Thomas", "Alls", "New York",
+                "female", "12/8/1998", "767-456-1235", "167-54-8569",
+                "TommyAlls", "TommyAlls1");
         ReusableMethods.bekle(2);
     }
 
@@ -42,7 +42,7 @@ public class DeanStepDefinition {
     @And("Hesabin olustugunu dogrula")
     public void hesabinOlustugunuDogrula() {
         ReusableMethods.visibleWait(deanManagmentPage.verifyAlert, 5);
-        Assert.assertTrue(deanManagmentPage.verifyAlert.isDisplayed());
+        Assert.assertEquals("Vice dean Saved", deanManagmentPage.verifyAlert.getText());
     }
 
     @And("Kullanici Add Vicedean bolumundeki zorunlu alanlari bos birakir")
@@ -61,15 +61,34 @@ public class DeanStepDefinition {
     }
 
 
-    @Then("Alert ile invalid deger oldugunu dogrula")
-    public void alertIleInvalidDegerOldugunuDogrula() {
-        Assert.assertTrue(deanManagmentPage.verifyPhoneNumber.isDisplayed());
-    }
-
     @Then("Submit butonuna tikla ve cikan alert ile phoneNumber'in invalid deger oldugunu dogrula")
     public void submitButonunaTiklaVeCikanAlertIlePhoneNumberInInvalidDegerOldugunuDogrula() {
         deanManagmentPage.viceDeanSubmitButton.click();
+        ReusableMethods.visibleWait(deanManagmentPage.verifyPhoneNumber, 5);
+        Assert.assertTrue(deanManagmentPage.verifyPhoneNumber.isDisplayed());
+
+    }
+
+    @And("Kullanici phoneNumber'a invalid bir numara girer")
+    public void kullaniciPhoneNumberAInvalidBirNumaraGirer() {
         deanManagmentPage.viceDeanPhoneNumber.clear();
-        deanManagmentPage.viceDeanPhoneNumber.sendKeys("123-4567-147");
+        //deanManagmentPage.viceDeanPhoneNumber.sendKeys("123-4567-147");
+    }
+
+    @And("Kullanici SSN'e invalid bir numara girer")
+    public void kullaniciSSNEInvalidBirNumaraGirer() {
+        deanManagmentPage.viceDeanSnnNumber.sendKeys("777-132-123");
+    }
+
+    @Then("Submit butonuna tikla ve cikan alert ile SSN'in invalid  deger oldugunu dogrula")
+    public void submitButonunaTiklaVeCikanAlertIleSSNInInvalidDegerOldugunuDogrula() {
+        deanManagmentPage.viceDeanSubmitButton.click();
+        ReusableMethods.visibleWait(deanManagmentPage.verifySsnNumber, 5);
+        Assert.assertTrue(deanManagmentPage.verifySsnNumber.isDisplayed());
+    }
+
+    @And("Kullanici Add Vicedean bolumundeki name {string}, lastName {string}, birthPlace {string}, gender {string}, dateOfBirth {string}, phone {string}, SSN {string}, userName {string}, password {string} doldurur")
+    public void kullaniciAddVicedeanBolumundekiNameLastNameBirthPlaceGenderDateOfBirthPhoneSSNUserNamePasswordDoldurur(String name, String lastName, String birtPlace, String gender, String dateOfBirth, String phone, String ssn, String userName, String password) {
+        deanManagmentPage.zorunluAlanlar(name, lastName, birtPlace, gender,dateOfBirth, phone, ssn, userName, password);
     }
 }

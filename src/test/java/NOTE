@@ -2,7 +2,7 @@
 
 invalid phone number ise 123-4567-147 bu sekilde yazarsak cikan alert'un locate'i --> (//*[text()='Please enter valid phone number'])[1]
 
-invalid ssn number ise 777-132-123 bu sekilde yazarsak cikan alert'un locate'i --> //*[text()='Please enter valid SSN number']
+invalid ssn number ise 777-132-123 bu sekilde yazarsak cikan alert'un locate'i --> (//*[text()='Please enter valid SSN number'])[1]
 
 name ve surname'de bosluk birakilsa bile ismi kabul ediyor ve kayıt yapabiliyor
 
@@ -27,4 +27,12 @@ phone alanina 12 degerden az girersek cikan mesajin locate'i --> //*[text()='Min
 SSN alanina 11 karakterden az girersek cikan mesajin locate'i --> //*[text()='Minimum 11 character (XXX-XX-XXXX)']
 
 Phone Number alanina - koymadan yazinca kabul ediyor(pass ama bug)
+
+Gecersiz gun girilse locate'i //*[text()='You have entered an invalid value. Valid values are: MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY']
+
+Ders basarili bir secilince gelen locate //*[text()='Created Lesson Program']
+
+gun ve saatler aynı olursa locate //*[text()='Please select education term']
+
+iki tane ders secilirse gun ve saatler farkli olsa bile gelen locate //*[text()='Please select education term']
 
