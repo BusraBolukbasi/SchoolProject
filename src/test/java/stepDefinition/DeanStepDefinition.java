@@ -17,7 +17,7 @@ public class DeanStepDefinition {
 
     @Given("Kullanici {string} olarak giris yapar")
     public void kullaniciOlarakGirisYapar(String username) {
-       deanManagmentPage.login(ConfigReader.getProperty("DeanName"), ConfigReader.getProperty("DeanPassword"));
+        deanManagmentPage.login(ConfigReader.getProperty("DeanName"), ConfigReader.getProperty("DeanPassword"));
     }
 
     @When("Giris yaptiktan sonra sag ustte bulunan menu butonuna tiklar ve vicdean butonunu secer")
@@ -47,12 +47,12 @@ public class DeanStepDefinition {
 
     @And("Kullanici Add Vicedean bolumundeki zorunlu alanlari bos birakir")
     public void kullaniciAddVicedeanBolumundekiZorunluAlanlariBosBirakir() {
-       deanManagmentPage.zorunluAlanlar(null, null, null, null, null, null, null, null, null);
+        deanManagmentPage.zorunluAlanlar(null, null, null, null, null, null, null, null, null);
     }
 
     @Then("Requied yazisini dogrula")
     public void requiedYazisiniDogrula() {
-        Assert.assertTrue(deanManagmentPage.requiedYazisi.isDisplayed());
+        Assert.assertEquals("Required", deanManagmentPage.requiedYazisi.getText());
     }
 
     @Given("Kullanici {string} sayfasina gider")
@@ -65,30 +65,53 @@ public class DeanStepDefinition {
     public void submitButonunaTiklaVeCikanAlertIlePhoneNumberInInvalidDegerOldugunuDogrula() {
         deanManagmentPage.viceDeanSubmitButton.click();
         ReusableMethods.visibleWait(deanManagmentPage.verifyPhoneNumber, 5);
-        Assert.assertTrue(deanManagmentPage.verifyPhoneNumber.isDisplayed());
+        Assert.assertEquals("Please enter valid phone number", deanManagmentPage.verifyPhoneNumber.getText());
 
     }
 
     @And("Kullanici phoneNumber'a invalid bir numara girer")
     public void kullaniciPhoneNumberAInvalidBirNumaraGirer() {
         deanManagmentPage.viceDeanPhoneNumber.clear();
-        //deanManagmentPage.viceDeanPhoneNumber.sendKeys("123-4567-147");
+        deanManagmentPage.viceDeanPhoneNumber.sendKeys("a23-as67-147");
     }
 
     @And("Kullanici SSN'e invalid bir numara girer")
     public void kullaniciSSNEInvalidBirNumaraGirer() {
-        deanManagmentPage.viceDeanSnnNumber.sendKeys("777-132-123");
+        deanManagmentPage.viceDeanSnnNumber.clear();
+        deanManagmentPage.viceDeanSnnNumber.sendKeys("45a-a5-7563");
     }
 
     @Then("Submit butonuna tikla ve cikan alert ile SSN'in invalid  deger oldugunu dogrula")
     public void submitButonunaTiklaVeCikanAlertIleSSNInInvalidDegerOldugunuDogrula() {
         deanManagmentPage.viceDeanSubmitButton.click();
         ReusableMethods.visibleWait(deanManagmentPage.verifySsnNumber, 5);
-        Assert.assertTrue(deanManagmentPage.verifySsnNumber.isDisplayed());
+        Assert.assertEquals("Please enter valid SSN number", deanManagmentPage.verifySsnNumber.getText());
     }
 
     @And("Kullanici Add Vicedean bolumundeki name {string}, lastName {string}, birthPlace {string}, gender {string}, dateOfBirth {string}, phone {string}, SSN {string}, userName {string}, password {string} doldurur")
     public void kullaniciAddVicedeanBolumundekiNameLastNameBirthPlaceGenderDateOfBirthPhoneSSNUserNamePasswordDoldurur(String name, String lastName, String birtPlace, String gender, String dateOfBirth, String phone, String ssn, String userName, String password) {
-        deanManagmentPage.zorunluAlanlar(name, lastName, birtPlace, gender,dateOfBirth, phone, ssn, userName, password);
+        deanManagmentPage.zorunluAlanlar(name, lastName, birtPlace, gender, dateOfBirth, phone, ssn, userName, password);
+    }
+
+    @And("Kullanici SSN'e {int} karakterden az numara girer")
+    public void kullaniciSSNEKarakterdenAzNumaraGirer(int sayi) {
+        deanManagmentPage.viceDeanSnnNumber.sendKeys("125-1-1236");
+    }
+
+    @Then("Submit butonuna tikla ve cikan mesaj ile SSN'in {int} karakterden az oldugunu dogrula")
+    public void submitButonunaTiklaVeCikanMesajIleSSNInKarakterdenAzOldugunuDogrula(int sayi) {
+        Assert.assertEquals("Minimum 11 character (XXX-XX-XXXX)", deanManagmentPage.ssnMessage.getText());
+    }
+
+
+    @And("Kullanici phone alanina {int} karakterden az numara girer")
+    public void kullaniciPhoneAlaninaKarakterdenAzNumaraGirer(int sayi) {
+        deanManagmentPage.viceDeanPhoneNumber.sendKeys("124-55-1236");
+    }
+
+    @Then("Submit butonuna tikla ve cikan mesaj ile phone'in {int} karakterden az oldugunu dogrula")
+    public void submitButonunaTiklaVeCikanMesajIlePhoneInKarakterdenAzOldugunuDogrula(int sayi) {
+        Assert.assertEquals("Minimum 12 character (XXX-XXX-XXXX)", deanManagmentPage.phoneMessage.getText());
     }
 }
+

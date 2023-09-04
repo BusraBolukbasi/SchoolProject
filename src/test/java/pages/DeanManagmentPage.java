@@ -78,6 +78,11 @@ public class DeanManagmentPage {
     @FindBy(xpath = "(//*[text()='Please enter valid SSN number'])[1]")
     public WebElement verifySsnNumber;
 
+    @FindBy(xpath = "//*[text()='Minimum 11 character (XXX-XX-XXXX)']")
+    public WebElement ssnMessage;
+
+    @FindBy(xpath = "//*[text()='Minimum 12 character (XXX-XXX-XXXX)']")
+    public WebElement phoneMessage;
 
     public DeanManagmentPage menuVeViceDeanTiklama() {
         DeanManagmentPage deanManagmentPage = new DeanManagmentPage();
