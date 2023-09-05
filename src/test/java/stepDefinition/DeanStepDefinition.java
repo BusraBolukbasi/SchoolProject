@@ -112,6 +112,14 @@ public class DeanStepDefinition {
     @Then("Submit butonuna tikla ve cikan mesaj ile phone'in {int} karakterden az oldugunu dogrula")
     public void submitButonunaTiklaVeCikanMesajIlePhoneInKarakterdenAzOldugunuDogrula(int sayi) {
         Assert.assertEquals("Minimum 12 character (XXX-XXX-XXXX)", deanManagmentPage.phoneMessage.getText());
+        System.out.println("");
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
     }
+
+
 }
 
