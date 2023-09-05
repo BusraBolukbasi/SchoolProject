@@ -1,3 +1,4 @@
+@all
 Feature: US06 Dean Vicedean Ekleyebilmeli
 
   Background: Kullanici Managementon Schools gider
