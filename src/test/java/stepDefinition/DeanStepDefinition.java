@@ -5,6 +5,10 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.asserts.SoftAssert;
 import pages.DeanManagmentPage;
 import pages.HomePage;
 import utilities.ConfigReader;
@@ -14,6 +18,10 @@ import utilities.ReusableMethods;
 public class DeanStepDefinition {
 
     DeanManagmentPage deanManagmentPage = new DeanManagmentPage();
+    SoftAssert softAssert = new SoftAssert();
+
+    Actions actions = new Actions(Driver.getDriver());
+
 
     @Given("Kullanici {string} olarak giris yapar")
     public void kullaniciOlarakGirisYapar(String username) {
@@ -121,5 +129,44 @@ public class DeanStepDefinition {
     }
 
 
+    @And("Kullanici password alanina kucuk harf ve sayi iceren {int} karakterli bir sifre girer")
+    public void kullaniciPasswordAlaninaKucukHarfVeSayiIcerenKarakterliBirSifreGirer(int sayi) {
+        deanManagmentPage.passwordClear();
+        deanManagmentPage.viceDeanPassword.sendKeys("elena123");
+
+
+    }
+
+    @Then("Password altinda cikan mesaji dogrula")
+    public void passwordAltindaCikanMesajiDogrula() {
+        softAssert.assertTrue(deanManagmentPage.viceDeanPassword.isDisplayed());
+    }
+
+    @And("Kullanici password alanina buyuk harf ve sayi iceren {int} karakterli bir sifre girer")
+    public void kullaniciPasswordAlaninaBuyukHarfVeSayiIcerenKarakterliBirSifreGirer(int sayi) {
+        deanManagmentPage.passwordClear();
+        deanManagmentPage.viceDeanPassword.sendKeys("ELENA123");
+
+
+    }
+
+    @And("Kullanici password alanina buyuk harf ve kucuk harf iceren {int} karakterli bir sifre girer")
+    public void kullaniciPasswordAlaninaBuyukHarfVeKucukHarfIcerenKarakterliBirSifreGirer(int sayi) {
+        deanManagmentPage.passwordClear();
+        deanManagmentPage.viceDeanPassword.sendKeys("ELENAback");
+
+    }
+
+    @And("Kullanici pasword alanina {int} karakterden az bir sifre girer")
+    public void kullaniciPaswordAlaninaKarakterdenAzBirSifreGirer(int sayi) {
+       deanManagmentPage.passwordClear();
+        deanManagmentPage.viceDeanPassword.sendKeys("elena");
+
+    }
+
+    @And("Kullanici sayfayi kapatir")
+    public void kullaniciSayfayiKapatir() {
+        Driver.getDriver().close();
+    }
 }
 

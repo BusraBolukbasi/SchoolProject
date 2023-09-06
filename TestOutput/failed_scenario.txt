@@ -1,1 +1,0 @@
-file:src/test/resources/US06_DeanVicedeanEkleyebilmeli.feature:19:24:52:70

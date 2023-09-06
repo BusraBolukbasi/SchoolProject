@@ -84,6 +84,9 @@ public class DeanManagmentPage {
     @FindBy(xpath = "//*[text()='Minimum 12 character (XXX-XXX-XXXX)']")
     public WebElement phoneMessage;
 
+    @FindBy(xpath = "(//*[@class='invalid-feedback'])[8]")
+    public WebElement passwordMessage;
+
     public DeanManagmentPage menuVeViceDeanTiklama() {
         DeanManagmentPage deanManagmentPage = new DeanManagmentPage();
         deanManagmentPage.menubutonu.click();
@@ -149,6 +152,13 @@ public class DeanManagmentPage {
     public DeanManagmentPage zorunluAlanlariBosBirak(){
         viceDeanPassword.click();
         viceDeanSubmitButton.click();
+        return this;
+    }
+
+    public DeanManagmentPage passwordClear(){
+        if (viceDeanPassword!=null){
+            viceDeanPassword.clear();
+        }
         return this;
     }
 }

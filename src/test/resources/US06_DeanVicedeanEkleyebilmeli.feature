@@ -1,4 +1,3 @@
-@all
 Feature: US06 Dean Vicedean Ekleyebilmeli
 
   Background: Kullanici Managementon Schools gider
@@ -60,7 +59,7 @@ Feature: US06 Dean Vicedean Ekleyebilmeli
       | name | lastname | birthPlace | gender | dateOfBirth | phone        | ssn | userName | password |
       | thv  | thv      | Korea      | Male   | 30.12.1995  | 546-785-7854 |     | thvTk    | thvTk123 |
 
-    @j
+  @j
   Scenario Outline: TC06 Dean Phone Alanina 12 Karakterden Az Numara Girer
     And Kullanici Add Vicedean bolumundeki name "<name>", lastName "<lastname>", birthPlace "<birthPlace>", gender "<gender>", dateOfBirth "<dateOfBirth>", phone "<phone>", SSN "<ssn>", userName "<userName>", password "<password>" doldurur
     And Kullanici phone alanina 12 karakterden az numara girer
@@ -68,3 +67,43 @@ Feature: US06 Dean Vicedean Ekleyebilmeli
     Examples:
       | name     | lastname | birthPlace | gender | dateOfBirth | phone | ssn         | userName | password |
       | Jeongguk | Kim      | Korea      | Male   | 01.09.1197  |       | 145-85-9654 | Jktkv    | Jktkv123 |
+
+  @k
+  Scenario Outline: TC07 Dean Password alanina buyuk, kucuk harf ve bir rakamsiz password girer
+    And Kullanici Add Vicedean bolumundeki name "<name>", lastName "<lastname>", birthPlace "<birthPlace>", gender "<gender>", dateOfBirth "<dateOfBirth>", phone "<phone>", SSN "<ssn>", userName "<userName>", password "<password>" doldurur
+    And Kullanici password alanina kucuk harf ve sayi iceren 8 karakterli bir sifre girer
+    Then Password altinda cikan mesaji dogrula
+    And Kullanici sayfayi kapatir
+    Examples:
+      | name  | lastname | birthPlace | gender | dateOfBirth | phone        | ssn         | userName     | password |
+      | Elena | Backham  | Egypt      | Female | 08.10.1985  | 789-546-7458 | 789-55-6254 | ElanaBackham |          |
+
+  @l
+  Scenario Outline: TC08 Dean Password alanina buyuk, kucuk harf ve bir rakamsiz password girer
+    And Kullanici Add Vicedean bolumundeki name "<name>", lastName "<lastname>", birthPlace "<birthPlace>", gender "<gender>", dateOfBirth "<dateOfBirth>", phone "<phone>", SSN "<ssn>", userName "<userName>", password "<password>" doldurur
+    And Kullanici password alanina buyuk harf ve sayi iceren 8 karakterli bir sifre girer
+    Then Password altinda cikan mesaji dogrula
+    And Kullanici sayfayi kapatir
+    Examples:
+      | name  | lastname | birthPlace | gender | dateOfBirth | phone        | ssn         | userName     | password |
+      | Elena | Backham  | Egypt      | Female | 08.10.1985  | 789-546-7458 | 789-55-6254 | ElanaBackham |          |
+
+  @m
+  Scenario Outline: TC09 Dean Password alanina buyuk, kucuk harf ve bir rakamsiz password girer
+    And Kullanici Add Vicedean bolumundeki name "<name>", lastName "<lastname>", birthPlace "<birthPlace>", gender "<gender>", dateOfBirth "<dateOfBirth>", phone "<phone>", SSN "<ssn>", userName "<userName>", password "<password>" doldurur
+    And Kullanici password alanina buyuk harf ve kucuk harf iceren 8 karakterli bir sifre girer
+    Then Password altinda cikan mesaji dogrula
+    And Kullanici sayfayi kapatir
+    Examples:
+      | name  | lastname | birthPlace | gender | dateOfBirth | phone        | ssn         | userName     | password |
+      | Elena | Backham  | Egypt      | Female | 08.10.1985  | 789-546-7458 | 789-55-6254 | ElanaBackham |          |
+
+  @n
+  Scenario Outline: TC10 Dean Password alanina buyuk, kucuk harf ve bir rakamsiz password girer
+    And Kullanici Add Vicedean bolumundeki name "<name>", lastName "<lastname>", birthPlace "<birthPlace>", gender "<gender>", dateOfBirth "<dateOfBirth>", phone "<phone>", SSN "<ssn>", userName "<userName>", password "<password>" doldurur
+    And Kullanici pasword alanina 8 karakterden az bir sifre girer
+    Then Password altinda cikan mesaji dogrula
+    And Kullanici sayfayi kapatir
+    Examples:
+      | name  | lastname | birthPlace | gender | dateOfBirth | phone        | ssn         | userName     | password |
+      | Elena | Backham  | Egypt      | Female | 08.10.1985  | 789-546-7458 | 789-55-6254 | ElanaBackham |          |
