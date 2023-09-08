@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
                            "rerun:TestOutput/failed_scenario.txt"},
         features = "src/test/resources/US06_DeanVicedeanEkleyebilmeli.feature",
         glue = {"stepDefinition"},
-        tags = "@n",
+        tags = "@k",
         dryRun = false,
         monochrome = true
 

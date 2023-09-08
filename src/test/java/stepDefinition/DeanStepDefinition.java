@@ -1,16 +1,11 @@
 package stepDefinition;
 
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import io.cucumber.java.en.*;
 import org.junit.Assert;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.asserts.SoftAssert;
 import pages.DeanManagmentPage;
-import pages.HomePage;
 import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.ReusableMethods;
@@ -23,6 +18,12 @@ public class DeanStepDefinition {
     Actions actions = new Actions(Driver.getDriver());
 
 
+    @Given("Kullanici {string} sayfasina gider")
+    public void kullaniciSayfasinaGider(String str) {
+        Driver.getDriver().get(ConfigReader.getProperty("homePageUrl"));
+
+    }
+
     @Given("Kullanici {string} olarak giris yapar")
     public void kullaniciOlarakGirisYapar(String username) {
         deanManagmentPage.login(ConfigReader.getProperty("DeanName"), ConfigReader.getProperty("DeanPassword"));
@@ -32,13 +33,9 @@ public class DeanStepDefinition {
     public void girisYaptiktanSonraSagUstteBulunanMenuButonunaTiklarVeVicdeanButonunuSecer() {
         deanManagmentPage.menuVeViceDeanTiklama();
     }
-
-    @And("Kullanici Add Vicedean bolumundeki zorunlu alanlari doldurur")
-    public void kullaniciAddVicedeanBolumundekiZorunluAlanlariDoldurur() {
-        deanManagmentPage.zorunluAlanlar("Thomas", "Alls", "New York",
-                "female", "12/8/1998", "767-456-1235", "167-54-8569",
-                "TommyAlls", "TommyAlls1");
-        ReusableMethods.bekle(2);
+    @And("Kullanici Add Vicedean bolumundeki name {string}, lastName {string}, birthPlace {string}, gender {string}, dateOfBirth {string}, phone {string}, SSN {string}, userName {string}, password {string} doldurur")
+    public void kullaniciAddVicedeanBolumundekiNameLastNameBirthPlaceGenderDateOfBirthPhoneSSNUserNamePasswordDoldurur(String name, String lastName, String birtPlace, String gender, String dateOfBirth, String phone, String ssn, String userName, String password) {
+        deanManagmentPage.zorunluAlanlar(name, lastName, birtPlace, gender, dateOfBirth, phone, ssn, userName, password);
     }
 
     @And("Submit butonuna tiklar")
@@ -61,11 +58,6 @@ public class DeanStepDefinition {
     @Then("Requied yazisini dogrula")
     public void requiedYazisiniDogrula() {
         Assert.assertEquals("Required", deanManagmentPage.requiedYazisi.getText());
-    }
-
-    @Given("Kullanici {string} sayfasina gider")
-    public void kullaniciSayfasinaGider(String str) {
-        Driver.getDriver().get(ConfigReader.getProperty("homePageUrl"));
     }
 
 
@@ -96,10 +88,6 @@ public class DeanStepDefinition {
         Assert.assertEquals("Please enter valid SSN number", deanManagmentPage.verifySsnNumber.getText());
     }
 
-    @And("Kullanici Add Vicedean bolumundeki name {string}, lastName {string}, birthPlace {string}, gender {string}, dateOfBirth {string}, phone {string}, SSN {string}, userName {string}, password {string} doldurur")
-    public void kullaniciAddVicedeanBolumundekiNameLastNameBirthPlaceGenderDateOfBirthPhoneSSNUserNamePasswordDoldurur(String name, String lastName, String birtPlace, String gender, String dateOfBirth, String phone, String ssn, String userName, String password) {
-        deanManagmentPage.zorunluAlanlar(name, lastName, birtPlace, gender, dateOfBirth, phone, ssn, userName, password);
-    }
 
     @And("Kullanici SSN'e {int} karakterden az numara girer")
     public void kullaniciSSNEKarakterdenAzNumaraGirer(int sayi) {
@@ -120,18 +108,13 @@ public class DeanStepDefinition {
     @Then("Submit butonuna tikla ve cikan mesaj ile phone'in {int} karakterden az oldugunu dogrula")
     public void submitButonunaTiklaVeCikanMesajIlePhoneInKarakterdenAzOldugunuDogrula(int sayi) {
         Assert.assertEquals("Minimum 12 character (XXX-XXX-XXXX)", deanManagmentPage.phoneMessage.getText());
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
     }
 
 
     @And("Kullanici password alanina kucuk harf ve sayi iceren {int} karakterli bir sifre girer")
     public void kullaniciPasswordAlaninaKucukHarfVeSayiIcerenKarakterliBirSifreGirer(int sayi) {
-        deanManagmentPage.passwordClear();
+        actions.doubleClick(deanManagmentPage.viceDeanPassword).perform();
+        deanManagmentPage.viceDeanPassword.sendKeys(Keys.DELETE);
         deanManagmentPage.viceDeanPassword.sendKeys("elena123");
 
 
@@ -144,7 +127,8 @@ public class DeanStepDefinition {
 
     @And("Kullanici password alanina buyuk harf ve sayi iceren {int} karakterli bir sifre girer")
     public void kullaniciPasswordAlaninaBuyukHarfVeSayiIcerenKarakterliBirSifreGirer(int sayi) {
-        deanManagmentPage.passwordClear();
+        actions.doubleClick(deanManagmentPage.viceDeanPassword).perform();
+        deanManagmentPage.viceDeanPassword.sendKeys(Keys.DELETE);
         deanManagmentPage.viceDeanPassword.sendKeys("ELENA123");
 
 
@@ -152,14 +136,16 @@ public class DeanStepDefinition {
 
     @And("Kullanici password alanina buyuk harf ve kucuk harf iceren {int} karakterli bir sifre girer")
     public void kullaniciPasswordAlaninaBuyukHarfVeKucukHarfIcerenKarakterliBirSifreGirer(int sayi) {
-        deanManagmentPage.passwordClear();
+        actions.doubleClick(deanManagmentPage.viceDeanPassword).perform();
+        deanManagmentPage.viceDeanPassword.sendKeys(Keys.DELETE);
         deanManagmentPage.viceDeanPassword.sendKeys("ELENAback");
 
     }
 
     @And("Kullanici pasword alanina {int} karakterden az bir sifre girer")
     public void kullaniciPaswordAlaninaKarakterdenAzBirSifreGirer(int sayi) {
-       deanManagmentPage.passwordClear();
+        actions.doubleClick(deanManagmentPage.viceDeanPassword).perform();
+        deanManagmentPage.viceDeanPassword.sendKeys(Keys.DELETE);
         deanManagmentPage.viceDeanPassword.sendKeys("elena");
 
     }
@@ -168,5 +154,6 @@ public class DeanStepDefinition {
     public void kullaniciSayfayiKapatir() {
         Driver.getDriver().close();
     }
+
 }
 

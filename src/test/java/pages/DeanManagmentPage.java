@@ -7,9 +7,10 @@ import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 import utilities.ReusableMethods;
 
+import java.util.List;
+
 
 public class DeanManagmentPage {
-    Faker name = new Faker();
 
     public DeanManagmentPage() {
         PageFactory.initElements(Driver.getDriver(), this);
@@ -87,10 +88,16 @@ public class DeanManagmentPage {
     @FindBy(xpath = "(//*[@class='invalid-feedback'])[8]")
     public WebElement passwordMessage;
 
+    @FindBy(xpath = "//*[text()='Contact Get All']")
+    public WebElement contactGetAllButton;
+
+    @FindBy(xpath = "//*[@class='table-group-divider']")
+    public List<WebElement> messages;
+
     public DeanManagmentPage menuVeViceDeanTiklama() {
-        DeanManagmentPage deanManagmentPage = new DeanManagmentPage();
-        deanManagmentPage.menubutonu.click();
-        deanManagmentPage.ViceDeanButonu.click();
+
+        menubutonu.click();
+        ViceDeanButonu.click();
         return this;
     }
 
@@ -141,7 +148,7 @@ public class DeanManagmentPage {
 
     }
 
-    public DeanManagmentPage login(String username, String password){
+    public DeanManagmentPage login(String username, String password) {
         ReusableMethods.click(loginButon);
         loginUsername.sendKeys(username);
         loginPassword.sendKeys(password);
@@ -149,16 +156,22 @@ public class DeanManagmentPage {
         return this;
     }
 
-    public DeanManagmentPage zorunluAlanlariBosBirak(){
+    public DeanManagmentPage zorunluAlanlariBosBirak() {
         viceDeanPassword.click();
         viceDeanSubmitButton.click();
         return this;
     }
 
-    public DeanManagmentPage passwordClear(){
-        if (viceDeanPassword!=null){
+    public DeanManagmentPage passwordClear() {
+        if (viceDeanPassword != null) {
             viceDeanPassword.clear();
         }
+        return this;
+    }
+
+    public DeanManagmentPage menuVeContactGetAllButonu() {
+        menubutonu.click();
+        contactGetAllButton.click();
         return this;
     }
 }
