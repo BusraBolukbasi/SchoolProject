@@ -18,8 +18,31 @@ public class DeanShouldBeAbleToSeeMessages {
     @Then("Mesajlarin gorunur oldugunu dogrula")
     public void mesajlarin_gorunur_oldugunu_dogrula() {
         softAssert.assertTrue(deanManagmentPage.messages.isEmpty());
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
     }
-
 
 }
 
