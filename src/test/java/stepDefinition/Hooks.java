@@ -8,11 +8,14 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import utilities.Driver;
 
+import static base_url.BaseUrl.setup;
+
 
 public class Hooks {
     @Before
     public void setUp() throws Exception {
         System.out.println("Scenariolar calismaya basladi");
+        setup();
     }
 
     @After
