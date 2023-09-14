@@ -20,6 +20,13 @@ Feature: Vicedean Ekleme Testi
     When Vicedean guncellemek icin Put Request gonderilir
     Then Gelen body dogrulanir
 
+    @US06_GetAll
+    Scenario: Olusturulan Vicedeanlari dogrulama islemi
+    Given Vicedean'lari sorgulamak icin Get islemi yapilir
+    When Viceden'lari sorgulamak icin Get Request gonderilir
+    Then Status code dogrulanir
+
+
   @US06_Delete
   Scenario: Olusturulan Vicedean'i silme islemi
     Given Vicedean silmek icin Delete islemi yapilir

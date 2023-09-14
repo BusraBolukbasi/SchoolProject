@@ -9,6 +9,8 @@ import pojos.VicedeanResponsePojo;
 import pojos.VicedeanSavePojo;
 import utilities.ObjectMapperUtils;
 
+import java.util.List;
+
 import static base_url.BaseUrl.spec;
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
@@ -29,6 +31,8 @@ public class DeanApiStepDefiniton {
 
     Response response3;
     JsonPath json1;
+
+    Response response4;
 
     // POST Islemi
     @Given("Vicedean eklemek icin Post Request hazirligi yapilir")
@@ -55,9 +59,9 @@ public class DeanApiStepDefiniton {
 
     @Then("Viceden bilgileri dogrulanir")
     public void viceden_bilgileri_dogrulanir() {
-       assertEquals(200, response.statusCode());
-       assertEquals(expectedData.getName(), actualData.getObject().getName());
-       assertEquals(expectedData.getSurname(), actualData.getObject().getSurname());
+        assertEquals(200, response.statusCode());
+        assertEquals(expectedData.getName(), actualData.getObject().getName());
+        assertEquals(expectedData.getSurname(), actualData.getObject().getSurname());
         assertEquals(expectedData.getUsername(), actualData.getObject().getUsername());
         assertTrue(actualData.getMessage().contains("Vice dean Saved"));
         assertTrue(actualData.getHttpStatus().contains("CREATED"));
@@ -67,13 +71,15 @@ public class DeanApiStepDefiniton {
     @Given("Vicedean sorgulamak icin Get islemi yapilir")
     public void vicedean_sorgulamak_icin_get_islemi_yapilir() {
         //https://managementonschools.com/app/vicedean/getViceDeanById/590
-       spec.pathParams("first", "vicedean", "second", "getViceDeanById", "third", 609);
+        spec.pathParams("first", "vicedean", "second", "getViceDeanById", "third", 609);
     }
+
     @When("Viceden sorgulamak icin Get Request gonderilir")
     public void viceden_sorgulamak_icin_get_request_gonderilir() {
         response1 = given(spec).when().get("{first}/{second}/{third}");
         response1.prettyPrint();
     }
+
     @Then("Body dogrulanir")
     public void body_dogrulanir() {
         json = response1.jsonPath();
@@ -89,16 +95,19 @@ public class DeanApiStepDefiniton {
         //https://managementonschools.com/app/vicedean/update/590
         spec.pathParams("first", "vicedean", "second", "update", "third", 609);
     }
+
     @Given("Guncellenecek vicedean bilgileri hazirlanir")
     public void guncellenecek_vicedean_bilgileri_hazirlanir() {
         expectedData1 = new VicedeanSavePojo("1996-10-11", "England", "FEMALE", "Abbie", "AbbieKristof12", "845-143-6325", "756-98-5412", "Kristof", "AbbieKristoff");
 
     }
+
     @When("Vicedean guncellemek icin Put Request gonderilir")
     public void vicedean_guncellemek_icin_put_request_gonderilir() {
         response2 = given(spec).body(expectedData1).when().put("{first}/{second}/{third}");
         response2.prettyPrint();
     }
+
     @Then("Gelen body dogrulanir")
     public void gelen_body_dogrulanir() {
         actualData1 = response2.as(VicedeanResponsePojo.class);
@@ -111,21 +120,42 @@ public class DeanApiStepDefiniton {
     @Given("Vicedean silmek icin Delete islemi yapilir")
     public void vicedean_silmek_icin_delete_islemi_yapilir() {
         //https://managementonschools.com/app/vicedean/delete/590
-        spec.pathParams("first", "vicedean","second","delete", "third", 609);
+        spec.pathParams("first", "vicedean", "second", "delete", "third", 609);
 
     }
+
     @When("Silmek icin Delete Request gonderilir")
     public void silmek_icin_delete_request_gonderilir() {
         response3 = given(spec).when().delete("{first}/{second}/{third}");
         response3.prettyPrint();
     }
+
     @Then("Silindigini dogrula")
     public void silindigini_dogrula() {
-         json1 = response3.jsonPath();
-         assertEquals(200, response3.statusCode());
-         assertEquals("Vice dean Deleted",json1.getString("message"));
+        json1 = response3.jsonPath();
+        assertEquals(200, response3.statusCode());
+        assertEquals("Vice dean Deleted", json1.getString("message"));
     }
 
+    @Given("Vicedean'lari sorgulamak icin Get islemi yapilir")
+    public void vicedean_lari_sorgulamak_icin_get_islemi_yapilir() {
+        //https://managementonschools.com/app/vicedean/getAll
+        spec.pathParams("first", "vicedean", "second", "getAll");
+    }
 
+    @When("Viceden'lari sorgulamak icin Get Request gonderilir")
+    public void viceden_lari_sorgulamak_icin_get_request_gonderilir() {
+        response4 = given(spec).when().get("{first}/{second}");
+        response4.prettyPrint();
+    }
+
+    @Then("Status code dogrulanir")
+    public void status_code_dogrulanir() {
+        JsonPath json2 = response4.jsonPath();
+        json2.getList("findAll{it.id}");
+        String idList = json2.getList("findAll{it.id}").toString();
+        assertEquals(200, response4.statusCode());
+
+    }
 
 }
