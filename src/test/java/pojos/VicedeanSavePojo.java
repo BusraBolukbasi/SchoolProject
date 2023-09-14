@@ -2,7 +2,7 @@ package pojos;
 
 import java.io.Serializable;
 
-public class ViceDeanSavePojo implements Serializable {
+public class VicedeanSavePojo implements Serializable {
 	private String birthDay;
 	private String birthPlace;
 	private String gender;
@@ -13,10 +13,10 @@ public class ViceDeanSavePojo implements Serializable {
 	private String surname;
 	private String username;
 
-	public ViceDeanSavePojo() {
+	public VicedeanSavePojo() {
 	}
 
-	public ViceDeanSavePojo(String birthDay, String birthPlace, String gender, String name, String password, String phoneNumber, String ssn, String surname, String username) {
+	public VicedeanSavePojo(String birthDay, String birthPlace, String gender, String name, String password, String phoneNumber, String ssn, String surname, String username) {
 		this.birthDay = birthDay;
 		this.birthPlace = birthPlace;
 		this.gender = gender;
@@ -103,7 +103,7 @@ public class ViceDeanSavePojo implements Serializable {
 	@Override
  	public String toString(){
 		return 
-			"ViceDeanSavePojo{" + 
+			"VicedeanSavePojo{" + 
 			"birthDay = '" + birthDay + '\'' + 
 			",birthPlace = '" + birthPlace + '\'' + 
 			",gender = '" + gender + '\'' + 

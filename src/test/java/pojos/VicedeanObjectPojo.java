@@ -3,30 +3,87 @@ package pojos;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class VicedeanObjectPojo implements Serializable {
+	private String birthDay;
+	private String birthPlace;
+	private String gender;
+	private String name;
+	private String phoneNumber;
+	private String ssn;
+	private String surname;
 	private int userId;
 	private String username;
-	private String name;
-	private String surname;
-	private String birthDay;
-	private String ssn;
-	private String birthPlace;
-	private String phoneNumber;
-	private String gender;
 
 	public VicedeanObjectPojo() {
 	}
 
-	public VicedeanObjectPojo(int userId, String username, String name, String surname, String birthDay, String ssn, String birthPlace, String phoneNumber, String gender) {
+	public VicedeanObjectPojo(String birthDay, String birthPlace, String gender, String name, String phoneNumber, String ssn, String surname, int userId, String username) {
+		this.birthDay = birthDay;
+		this.birthPlace = birthPlace;
+		this.gender = gender;
+		this.name = name;
+		this.phoneNumber = phoneNumber;
+		this.ssn = ssn;
+		this.surname = surname;
 		this.userId = userId;
 		this.username = username;
-		this.name = name;
-		this.surname = surname;
+	}
+
+	public void setBirthDay(String birthDay){
 		this.birthDay = birthDay;
-		this.ssn = ssn;
+	}
+
+	public String getBirthDay(){
+		return birthDay;
+	}
+
+	public void setBirthPlace(String birthPlace){
 		this.birthPlace = birthPlace;
-		this.phoneNumber = phoneNumber;
+	}
+
+	public String getBirthPlace(){
+		return birthPlace;
+	}
+
+	public void setGender(String gender){
 		this.gender = gender;
+	}
+
+	public String getGender(){
+		return gender;
+	}
+
+	public void setName(String name){
+		this.name = name;
+	}
+
+	public String getName(){
+		return name;
+	}
+
+	public void setPhoneNumber(String phoneNumber){
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getPhoneNumber(){
+		return phoneNumber;
+	}
+
+	public void setSsn(String ssn){
+		this.ssn = ssn;
+	}
+
+	public String getSsn(){
+		return ssn;
+	}
+
+	public void setSurname(String surname){
+		this.surname = surname;
+	}
+
+	public String getSurname(){
+		return surname;
 	}
 
 	public void setUserId(int userId){
@@ -45,75 +102,19 @@ public class VicedeanObjectPojo implements Serializable {
 		return username;
 	}
 
-	public void setName(String name){
-		this.name = name;
-	}
-
-	public String getName(){
-		return name;
-	}
-
-	public void setSurname(String surname){
-		this.surname = surname;
-	}
-
-	public String getSurname(){
-		return surname;
-	}
-
-	public void setBirthDay(String birthDay){
-		this.birthDay = birthDay;
-	}
-
-	public String getBirthDay(){
-		return birthDay;
-	}
-
-	public void setSsn(String ssn){
-		this.ssn = ssn;
-	}
-
-	public String getSsn(){
-		return ssn;
-	}
-
-	public void setBirthPlace(String birthPlace){
-		this.birthPlace = birthPlace;
-	}
-
-	public String getBirthPlace(){
-		return birthPlace;
-	}
-
-	public void setPhoneNumber(String phoneNumber){
-		this.phoneNumber = phoneNumber;
-	}
-
-	public String getPhoneNumber(){
-		return phoneNumber;
-	}
-
-	public void setGender(String gender){
-		this.gender = gender;
-	}
-
-	public String getGender(){
-		return gender;
-	}
-
 	@Override
  	public String toString(){
 		return 
 			"ObjectPojo{" + 
-			"userId = '" + userId + '\'' + 
-			",username = '" + username + '\'' + 
-			",name = '" + name + '\'' + 
-			",surname = '" + surname + '\'' + 
-			",birthDay = '" + birthDay + '\'' + 
-			",ssn = '" + ssn + '\'' + 
+			"birthDay = '" + birthDay + '\'' + 
 			",birthPlace = '" + birthPlace + '\'' + 
-			",phoneNumber = '" + phoneNumber + '\'' + 
 			",gender = '" + gender + '\'' + 
+			",name = '" + name + '\'' + 
+			",phoneNumber = '" + phoneNumber + '\'' + 
+			",ssn = '" + ssn + '\'' + 
+			",surname = '" + surname + '\'' + 
+			",userId = '" + userId + '\'' + 
+			",username = '" + username + '\'' + 
 			"}";
 		}
 }

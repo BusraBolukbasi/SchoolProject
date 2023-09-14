@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
                            "rerun:TestOutput/failed_scenario.txt"},
         features = "src/test/resources/api/US06_ApiDeanManagement.feature",
         glue = {"stepDefinition"},
-        tags = "@US06_Api",
+        tags = "@US06_Delete",
         dryRun = false,
         monochrome = true
 

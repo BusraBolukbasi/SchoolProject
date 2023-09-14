@@ -7,7 +7,7 @@ import pages.DeanManagmentPage;
 public class DeanShouldBeAbleToSeeMessages {
     DeanManagmentPage deanManagmentPage = new DeanManagmentPage();
 
-    SoftAssert softAssert = new SoftAssert();
+  SoftAssert softAssert = new SoftAssert();
 
 
     @When("Giris yaptiktan sonra sag ustte bulunan menu butonuna tiklar ve contact get all butonunu secer")

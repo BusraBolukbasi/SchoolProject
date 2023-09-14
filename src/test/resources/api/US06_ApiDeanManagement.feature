@@ -1,17 +1,27 @@
 Feature: Vicedean Ekleme Testi
 
-  @US06_Api
+  @US06_Post
   Scenario: Vicedean basarili bir sekilde eklenebilmeli
-  Given Vicedean eklemek icin Post Request hazirligi yapilir
-  And Gonderilecek vicedean bilgileri hazirlanir
-  When Vicedean eklemek icin Post Request gonderilir
-  Then Viceden bilgileri dogrulanir
+    Given Vicedean eklemek icin Post Request hazirligi yapilir
+    And Gonderilecek vicedean bilgileri hazirlanir
+    When Vicedean eklemek icin Post Request gonderilir
+    Then Viceden bilgileri dogrulanir
 
+  @US06_GetByID
+  Scenario: Olusturulan Vicedean dogrulama islemi
+    Given Vicedean sorgulamak icin Get islemi yapilir
+    When Viceden sorgulamak icin Get Request gonderilir
+    Then Body dogrulanir
 
+  @US06_Put
+  Scenario: Olusturulan Vicedean uzerinde degisiklik yapma
+    Given Viceden guncellemek icin Put hazirligi yapilir
+    And Guncellenecek vicedean bilgileri hazirlanir
+    When Vicedean guncellemek icin Put Request gonderilir
+    Then Gelen body dogrulanir
 
-    #  Feature: Dean Ekleme Testi
-    #    Scenario: Dean basarili bir sekilde eklenebilmeli
-    #      Given Dean eklemek icin Post request hazirligi yapilir
-    #      And Gonderilecek dean bilgileri hazirlanir
-    #      When Dean eklemek icin Post request gonderilir
-    #      Then Dean bilgileri dogrulanir
+  @US06_Delete
+  Scenario: Olusturulan Vicedean'i silme islemi
+    Given Vicedean silmek icin Delete islemi yapilir
+    When Silmek icin Delete Request gonderilir
+    Then Silindigini dogrula
