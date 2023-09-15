@@ -4,19 +4,16 @@ import io.cucumber.java.en.*;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.asserts.SoftAssert;
-import pojos.VicedeanObjectPojo;
 import pojos.VicedeanResponsePojo;
 import pojos.VicedeanSavePojo;
-import utilities.ObjectMapperUtils;
 
-import java.util.List;
 
 import static base_url.BaseUrl.spec;
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class DeanApiStepDefiniton {
+public class DeanAddVicedeanApiStepDefiniton {
     SoftAssert softAssert = new SoftAssert();
     VicedeanSavePojo expectedData;
     Response response;
@@ -152,8 +149,8 @@ public class DeanApiStepDefiniton {
     @Then("Status code dogrulanir")
     public void status_code_dogrulanir() {
         JsonPath json2 = response4.jsonPath();
-        json2.getList("findAll{it.id}");
-        String idList = json2.getList("findAll{it.id}").toString();
+//        json2.getList("findAll{it.id}");
+//        String idList = json2.getList("findAll{it.id}").toString();
         assertEquals(200, response4.statusCode());
 
     }
